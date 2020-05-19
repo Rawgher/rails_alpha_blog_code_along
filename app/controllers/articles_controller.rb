@@ -1,8 +1,9 @@
 class ArticlesController < ApplicationController
+  # sending the method created below before running actions
+  # this action only takes place for the functions listed in []s
+  before_action :set_article, only: [:show, :edit, :update, :destroy]
 
   def show
-    # @ makes the variable into an instance variable that will be available in the show view
-    @article = Article.find(params[:id])
   end
 
   def index
@@ -17,7 +18,7 @@ class ArticlesController < ApplicationController
   def create
     # Have to whitelist articles by requiring the top level key article and permit the title and description
     # to come in at submission to create the new article instance
-    @article = Article.new(params.require(:article).permit(:title, :description))
+    @article = Article.new(article_params)
     # adding if/else statement to handle if the form is submitted and missing a field
     if @article.save
       flash[:notice] = "Article was created successfully."
@@ -30,12 +31,10 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-    @article = Article.find(params[:id])
   end
 
   def update
-    @article = Article.find(params[:id])
-    if @article.update(params.require(:article).permit(:title, :description))
+    if @article.update(article_params)
       flash[:notice] = "Article was updated successfully."
       redirect_to @article
     else
@@ -44,9 +43,21 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    @article = Article.find(params[:id])
     @article.destroy
     redirect_to articles_path
+  end
+
+  # private makes any methods listed after it only accessible by this file, does not need an end block
+  private
+
+  def set_article
+    # @ makes the variable into an instance variable that will be available in the show view
+    @article = Article.find(params[:id])
+  end
+
+  # function for adding required parameters to create and update actions above
+  def article_params
+    params.require(:article).permit(:title, :description)
   end
 
 end
