@@ -48,6 +48,7 @@ class ArticlesController < ApplicationController
   end
 
   # private makes any methods listed after it only accessible by this file, does not need an end block
+  # always add private toward the bottom of your code to make sure other methods don't become private by accident
   private
 
   def set_article

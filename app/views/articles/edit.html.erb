@@ -1,36 +1,6 @@
 <h1>Edit an article here</h1>
 
-<% if @article.errors.any?  %>
-  <h2>The following errors have prevented the article from being saved </h2>
-  <ul>
-    <%# for loop that allows any error messages to be displayed after form submission %>
-    <% @article.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-  </ul>
-
-<% end %>
-
-<%# form_with is updated to make sure it prefills with the infromation from the article you are editing %>
-<%= form_with(model: @article, local: true) do |f| %>
-
-  <p>
-    <%= f.label :title %>
-    <br/>
-    <%= f.text_field :title %>
-  </p>
-
-  <p>
-    <%= f.label :description %>
-    <br/>
-    <%= f.text_area :description %>
-  </p>
-
-  <p>
-    <%= f.submit %>
-  </p>
-
-
-<% end %>
+<%# does not have to be as specific since it is outside the layouts folder %>
+<%= render 'form' %>
 
 <%= link_to 'Cancel and return to articles listing', articles_path %>
