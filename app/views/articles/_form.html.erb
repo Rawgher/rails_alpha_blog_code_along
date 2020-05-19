@@ -1,14 +1,3 @@
-<% if @article.errors.any?  %>
-  <h2>The following errors have prevented the article from being saved </h2>
-  <ul>
-    <%# for loop that allows any error messages to be displayed after form submission %>
-    <% @article.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-  </ul>
-
-<% end %>
-
 <%# form_with is updated to make sure it prefills with the infromation from the article you are editing %>
 <%= form_with(model: @article, local: true) do |f| %>
 
