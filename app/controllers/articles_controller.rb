@@ -10,16 +10,25 @@ class ArticlesController < ApplicationController
   end
 
   def new
+    # adding so that the new page does not error out on load due to the articles.error portion
+    @article = Article.new
   end
 
   def create
+
     # Have to whitelist articles by requiring the top level key article and permit the title and description
     # to come in at submission to create the new article instance
     @article = Article.new(params.require(:article).permit(:title, :description))
-    @article.save
-    redirect_to article_path(@article)
+    # adding if/else statement to handle if the form is submitted and missing a field
+    if @article.save
+      flash[:notice] = "Article was created successfully."
+      redirect_to article_path(@article)
+    else
+      render 'new'
+    end
     # can also just use below code
     # redirect_to article_path(@article)
+
   end
 
 end
