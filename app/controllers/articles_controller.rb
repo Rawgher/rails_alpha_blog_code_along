@@ -15,7 +15,6 @@ class ArticlesController < ApplicationController
   end
 
   def create
-
     # Have to whitelist articles by requiring the top level key article and permit the title and description
     # to come in at submission to create the new article instance
     @article = Article.new(params.require(:article).permit(:title, :description))
@@ -28,7 +27,6 @@ class ArticlesController < ApplicationController
     end
     # can also just use below code
     # redirect_to article_path(@article)
-
   end
 
   def edit
@@ -43,6 +41,12 @@ class ArticlesController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def destroy
+    @article = Article.find(params[:id])
+    @article.destroy
+    redirect_to articles_path
   end
 
 end
