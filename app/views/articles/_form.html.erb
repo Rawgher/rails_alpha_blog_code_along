@@ -1,15 +1,7 @@
 <div class="container">
-  <% if @article.errors.any? %>
-    <h2>The following errors prevented the article from being saved</h2>
-    <ul>
-      <%# for loop that allows any error messages to be displayed after form submission %>
-      <% @article.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-    </ul>
-  <% end %>
-<div class="row justify-content-center">
+  <div class="row justify-content-center">
    <div class="col-10">
+     <%= render 'shared/errors' %>
      <%# form_with is updated to make sure it prefills with the infromation from the article you are editing %>
      <%= form_with(model: @article, class: "shadow p-3 mb-3 bg-info rounded", local: true) do |f| %>
        <div class="form-group row">
