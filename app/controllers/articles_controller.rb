@@ -19,6 +19,10 @@ class ArticlesController < ApplicationController
     # Have to whitelist articles by requiring the top level key article and permit the title and description
     # to come in at submission to create the new article instance
     @article = Article.new(article_params)
+
+    # Hardcoding user in for now until authentication is Added
+    @article.user = User.first
+
     # adding if/else statement to handle if the form is submitted and missing a field
     if @article.save
       flash[:notice] = "Article was created successfully."
