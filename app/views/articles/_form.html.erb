@@ -1,7 +1,8 @@
 <div class="container">
   <div class="row justify-content-center">
    <div class="col-10">
-     <%= render 'shared/errors' %>
+     <%# since the error is being used by multiple objects, we have to specify the one being used here as @article instead of @user %>
+     <%= render 'shared/errors', obj: @article %>
      <%# form_with is updated to make sure it prefills with the infromation from the article you are editing %>
      <%= form_with(model: @article, class: "shadow p-3 mb-3 bg-info rounded", local: true) do |f| %>
        <div class="form-group row">
