@@ -22,8 +22,8 @@ class ArticlesController < ApplicationController
     # to come in at submission to create the new article instance
     @article = Article.new(article_params)
 
-    # Hardcoding user in for now until authentication is Added
-    @article.user = User.first
+    # accession the sessions current user to assign an author to the blog post
+    @article.user = current_user
 
     # adding if/else statement to handle if the form is submitted and missing a field
     if @article.save
