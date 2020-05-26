@@ -1,5 +1,6 @@
 class User < ApplicationRecord
-  has_many :articles
+  # adding dependent so that if a user is deleted, all articles associated with them will be deleted
+  has_many :articles, dependent: :destroy
   # Before anything is added to the db it sets the email to be all lowercase
   before_save { self.email = email.downcase }
   validates :username, presence: true, uniqueness: { case_sensitive: false }, length: { minimum: 3, maximum: 25 }
