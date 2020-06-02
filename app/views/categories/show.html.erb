@@ -1,1 +1,6 @@
 <h1 class="text-center mt-4">Category: <%= @category.name %></h1>
+
+<%= render 'category_listing' %>
+<div class="apple_pagination">
+    <%= will_paginate @category_articles, :container => false %>
+</div>

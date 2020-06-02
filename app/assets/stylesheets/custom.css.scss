@@ -42,6 +42,13 @@ body {
   flex-shrink: none;
 }
 
+.badge {
+  background-color: #CEF6F5;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  font-weight: bold;
+}
+
 // pagination css from will_paginate gem
 .apple_pagination {
   text-align: center;
